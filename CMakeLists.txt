@@ -1,9 +1,9 @@
 cmake_minimum_required (VERSION 2.6)
 project (sfml-test)
 
-find_package(SFML)
+find_package (SFML REQUIRED system)
 
-add_executable(sfml-test main.cpp)
+add_executable (sfml-test main.cpp)
 
-include_directories(${SFML_INCLUDE_DIRS})
-target_link_libraries(sfml-test ${SFML_LIBRARIES})
+include_directories (${SFML_INCLUDE_DIRS})
+target_link_libraries (sfml-test ${SFML_LIBRARIES})

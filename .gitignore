@@ -1,2 +1,9 @@
+# CMake files
+CMakeCache.txt
+CMakeFiles
+Makefile
+cmake_install.cmake
+
+# Build files
 *.o
-main
+sfml-test
