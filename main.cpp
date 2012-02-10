@@ -1,6 +1,5 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
-#include <OpenGL/GL.h>
 #include <iostream>
 
 void setClear() {
