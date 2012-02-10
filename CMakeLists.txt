@@ -3,6 +3,10 @@ project (sfml-test)
 
 find_package (SFML REQUIRED system)
 
+if (APPLE)
+  set (CMAKE_OSX_ARCHITECTURES "i386")
+endif (APPLE)
+
 add_executable (sfml-test main.cpp)
 
 include_directories (${SFML_INCLUDE_DIRS})
