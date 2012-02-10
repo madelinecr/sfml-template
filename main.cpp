@@ -1,6 +1,12 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
+#include <OpenGL/GL.h>
 #include <iostream>
+
+void setClear() {
+  glClearDepth(1.f);
+  glClearColor(0.f, 0.f, 0.f, 0.f);
+}
 
 int main() {
 //  sf::Clock clock;
@@ -10,14 +16,14 @@ int main() {
 
   sf::Window App(sf::VideoMode(800, 600, 32), "SFML Window");
 
-  bool running = true;
-
   sf::Event Event;
-  while(running) {
+  while(App.IsOpened()) {
     if(App.GetEvent(Event))
       if(Event.Type == sf::Event::Closed)
-        running = false;
+        App.Close();
 
+    setClear();
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     App.Display();
   }
 
