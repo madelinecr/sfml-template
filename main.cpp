@@ -1,5 +1,6 @@
 #include <SFML/System.hpp>
 #include <SFML/Window.hpp>
+#include <SFML/OpenGL.hpp>
 #include <iostream>
 
 void setClear() {
@@ -11,9 +12,9 @@ void drawCube(sf::Clock Clock) {
   glMatrixMode(GL_MODELVIEW);
   glLoadIdentity();
   glTranslatef(0.f, 0.f, -200.f);
-  glRotatef(Clock.GetElapsedTime() * 50, 1.f, 0.f, 0.f);
-  glRotatef(Clock.GetElapsedTime() * 30, 0.f, 1.f, 0.f);
-  glRotatef(Clock.GetElapsedTime() * 90, 0.f, 0.f, 1.f);
+//  glRotatef(Clock.GetElapsedTime(), 1.f, 0.f, 0.f);
+//  glRotatef(Clock.GetElapsedTime(), 0.f, 1.f, 0.f);
+//  glRotatef(Clock.GetElapsedTime(), 0.f, 0.f, 1.f);
 
   glBegin(GL_QUADS);
 
@@ -63,12 +64,7 @@ int main() {
   glLoadIdentity();
   gluPerspective(90.f, 1.f, 1.f, 500.f);
 
-  sf::Event Event;
-  while(App.IsOpened()) {
-    if(App.GetEvent(Event))
-      if(Event.Type == sf::Event::Closed)
-        App.Close();
-
+  while(App.IsOpen()) {
     setClear();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     drawCube(Clock);
