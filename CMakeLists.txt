@@ -1,7 +1,7 @@
 cmake_minimum_required (VERSION 2.6)
 project (sfml-test)
 
-find_package (SFML REQUIRED system)
+find_package (SFML REQUIRED system window)
 
 if (APPLE)
   set (CMAKE_OSX_ARCHITECTURES "i386")
