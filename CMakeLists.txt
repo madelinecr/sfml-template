@@ -1,20 +1,31 @@
+# Project Settings
 cmake_minimum_required (VERSION 2.6)
 project (sfml-test)
 
+set (CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/Modules)
+
+# Libraries
 set (CMAKE_FIND_FRAMEWORK "NEVER")
 find_package (SFML REQUIRED system window)
 set (CMAKE_FIND_FRAMEWORK "ONCE")
 find_package (OpenGL REQUIRED)
 
-add_executable (sfml-test main.cpp)
+# Build Settings
+set (EXECUTABLE "sfml-test")
+set (SRC_FILES "main.cpp")
+set (PROJECT_INCLUDES ${SFML_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS})
 
-include_directories (${SFML_INCLUDE_DIRS})
-include_directories (${OpenGL_INCLUDE_DIRS})
 
-target_link_libraries (sfml-test ${SFML_LIBRARIES})
+# Build setup
+add_executable (${EXECUTABLE} ${SRC_FILES})
+
+include_directories (${PROJECT_INCLUDES})
+target_link_libraries (${EXECUTABLE} ${SFML_LIBRARIES})
 
 if (APPLE)
-  target_link_libraries (sfml-test "-framework OpenGL")
-elseif (LINUX)
-  target_link_libraries(sfml-test ${OpenGL_LIBRARIES})
+  message ( "Apple environment detected. Binding to OpenGL framework." )
+  target_link_libraries (${EXECUTABLE} "-framework OpenGL")
+else ()
+  message ( "Assuming POSIX environment and binding with OpenGL." )
+  target_link_libraries (${EXECUTABLE} ${OPENGL_LIBRARIES})
 endif ()
